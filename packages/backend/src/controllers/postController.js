@@ -1,7 +1,6 @@
 const postService = require('../services/postService');
 
 const createPost = (req, res) => {
-  console.log('컨트롤러');
   const { content, author_id, password } = req.body;
   try {
     const post = postService.addPost(content, author_id, password);
