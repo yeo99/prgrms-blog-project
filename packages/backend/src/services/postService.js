@@ -17,9 +17,9 @@ const addPost = async (content, author_id, password) => {
 };
 
 // 게시글 수정
-const updatePost = async (post_id, author_id, password, newContent) => {
+const updatePost = async (id, author_id, password, newContent) => {
   // 요청 대상 게시글 찾기
-  const post = await post.findOne({ where: { post_id, author_id } });
+  const post = await Post.findOne({ where: { id, author_id } });
   if (!post) throw new Error('게시글을 찾을 수 없습니다');
 
   // 비밀번호 검증

@@ -11,11 +11,14 @@ const createPost = (req, res) => {
 };
 
 const updatePost = (req, res) => {
-  const { post_id } = req.params;
-  const { author_id, password, content } = req.body;
+  const { id } = req.params;
+  const { author_id, password, newContent } = req.body;
+  console.log('id: ', id);
+  console.log('author_id: ', author_id);
 
   try {
-    const post = postService.updatePost(post_id, author_id, password);
+    const post = postService.updatePost(id, author_id, password, newContent);
+    res.status(200).json(post);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
