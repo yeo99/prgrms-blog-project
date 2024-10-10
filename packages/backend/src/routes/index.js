@@ -1,6 +1,5 @@
 const express = require('express');
 const postRoute = require('./postRoute');
-const HelloRoute = require('./HelloRoute');
 
 const router = express.Router();
 
