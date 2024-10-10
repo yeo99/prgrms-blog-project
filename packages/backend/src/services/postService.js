@@ -34,9 +34,9 @@ const updatePost = async (id, author_id, password, newContent) => {
 };
 
 // 게시글 삭제
-const deletePost = async (post_id, author_id, password) => {
+const deletePost = async (id, author_id, password) => {
   // 요청 대상 게시글 찾기
-  const post = await Post.findOne({ where: { post_id, author_id } });
+  const post = await Post.findOne({ where: { id, author_id } });
   if (!post) throw new Error('게시글을 찾을 수 없습니다.');
 
   // TODO: 겹치는 인증로직 나중에 분리하기
