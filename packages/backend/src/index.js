@@ -1,25 +1,24 @@
-const express = require('express')
+const express = require('express');
 const { sequelize } = require('../models');
+const routes = require('./routes');
 require('dotenv').config({
-  path: process.env.NODE_ENV === 'production' ? '../../../.env.production' : '../../../.env.local'
+  path:
+    process.env.NODE_ENV === 'production'
+      ? '../../../.env.production'
+      : '../../../.env.local',
 });
 
-// router
-const HelloRoute = require('./routes/HelloRoute.js')
-
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use('/', routes);
 
-const port = 8080;
-
-app.use('/', HelloRoute);
-
-app.listen(port, () => {
+app.listen(process.env.SERVER_PORT, () => {
   console.log(`Server is running`);
 });
 
 // Sequelize를 사용한 데이터베이스 연결 테스트
-sequelize.authenticate()
+sequelize
+  .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
   })
