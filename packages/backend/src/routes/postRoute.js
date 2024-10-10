@@ -5,6 +5,7 @@ const router = express.Router();
 
 // /post/~
 router.post('/', postController.createPost); // 게시글 생성
+router.get('/', postController.getAllPost); // 게시글 조회
 router.put('/:id', postController.updatePost); // 게시글 수정
 router.delete('/:id', postController.deletePost); // 게시글 삭제
 

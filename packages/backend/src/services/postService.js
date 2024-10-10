@@ -16,6 +16,12 @@ const addPost = async (content, author_id, password) => {
   return post;
 };
 
+const getAllPost = async () => {
+  const posts = await Post.findAll();
+
+  return posts;
+};
+
 // 게시글 수정
 const updatePost = async (id, author_id, password, newContent) => {
   // 요청 대상 게시글 찾기
@@ -49,6 +55,7 @@ const deletePost = async (id, author_id, password) => {
 
 module.exports = {
   addPost,
+  getAllPost,
   updatePost,
   deletePost,
 };

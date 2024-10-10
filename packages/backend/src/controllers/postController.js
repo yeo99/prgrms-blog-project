@@ -10,6 +10,15 @@ const createPost = (req, res) => {
   }
 };
 
+const getAllPost = async (req, res) => {
+  try {
+    const posts = await postService.getAllPost();
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const updatePost = (req, res) => {
   const { id } = req.params;
   const { author_id, password, newContent } = req.body;
@@ -38,6 +47,7 @@ const deletePost = (req, res) => {
 
 module.exports = {
   createPost,
+  getAllPost,
   updatePost,
   deletePost,
 };
