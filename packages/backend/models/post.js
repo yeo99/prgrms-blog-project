@@ -38,9 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Post',
       tableName: 'posts', // 테이블 이름 명시
-      timestamps: true, // createdAt, updatedAt 필드 자동 생성 비활성화
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
+      timestamps: true,
     }
   );
 
