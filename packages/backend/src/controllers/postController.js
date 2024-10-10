@@ -10,9 +10,9 @@ const createPost = (req, res) => {
   }
 };
 
-const getAllPost = async (req, res) => {
+const readPost = async (req, res) => {
   try {
-    const posts = await postService.getAllPost();
+    const posts = await postService.getAllPostWithComments();
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -22,8 +22,6 @@ const getAllPost = async (req, res) => {
 const updatePost = (req, res) => {
   const { id } = req.params;
   const { author_id, password, newContent } = req.body;
-  console.log('id: ', id);
-  console.log('author_id: ', author_id);
 
   try {
     const post = postService.updatePost(id, author_id, password, newContent);
@@ -47,7 +45,7 @@ const deletePost = (req, res) => {
 
 module.exports = {
   createPost,
-  getAllPost,
+  readPost,
   updatePost,
   deletePost,
 };

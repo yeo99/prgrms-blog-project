@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const { Post } = require('../../models');
+const { Post, Comment } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // 게시글 추가
@@ -16,8 +16,15 @@ const addPost = async (content, author_id, password) => {
   return post;
 };
 
-const getAllPost = async () => {
-  const posts = await Post.findAll();
+const getAllPostWithComments = async () => {
+  const posts = await Post.findAll({
+    include: [
+      {
+        model: Comment,
+        as: 'Comments',
+      },
+    ],
+  });
 
   return posts;
 };
@@ -55,7 +62,7 @@ const deletePost = async (id, author_id, password) => {
 
 module.exports = {
   addPost,
-  getAllPost,
+  getAllPostWithComments,
   updatePost,
   deletePost,
 };
