@@ -25,7 +25,6 @@ const updateComment = async (id, author_id, password, newContent) => {
   if (!comment) throw new Error('댓글을 찾을 수 없습니다.');
 
   // 비밀번호 검증
-  const bcrypt = require('bcrypt');
   const isPasswordValid = await bcrypt.compare(password, comment.password_hash);
   if (!isPasswordValid) throw new Error('비밀번호가 일치하지 않습니다.');
 
@@ -36,7 +35,24 @@ const updateComment = async (id, author_id, password, newContent) => {
   return comment;
 };
 
+// 댓글 삭제
+const deleteComment = async (comment_id, author_id, password) => {
+  const comment = await Comment.findOne({
+    where: { id: comment_id, author_id },
+  });
+  if (!comment) throw new Error('댓글을 찾을 수 없습니다.');
+
+  // 비밀번호 검증
+  const isPasswordValid = await bcrypt.compare(password, comment.password_hash);
+  if (!isPasswordValid) throw new Error('비밀번호가 일치하지 않습니다.');
+
+  // 댓글 삭제
+  await comment.destroy();
+  return true;
+};
+
 module.exports = {
   addComment,
   updateComment,
+  deleteComment,
 };

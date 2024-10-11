@@ -3,8 +3,9 @@ const commentController = require('../controllers/commentController');
 
 const router = express.Router();
 
-// 댓글 추가
-router.post('/:id', commentController.addComment);
-router.put('/:id', commentController.updateComment);
+// /posts/~
+router.post('/:comment_id', commentController.addComment);
+router.put('/:comment_id', commentController.updateComment);
+router.delete('/:comment_id', commentController.deleteComment);
 
 module.exports = router;
