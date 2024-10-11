@@ -16,6 +16,27 @@ const addComment = async (post_id, content, author_id, password) => {
   return comment;
 };
 
+// 댓글 수정
+const updateComment = async (id, author_id, password, newContent) => {
+  // 댓글 찾기
+  const comment = await Comment.findOne({
+    where: { id, author_id },
+  });
+  if (!comment) throw new Error('댓글을 찾을 수 없습니다.');
+
+  // 비밀번호 검증
+  const bcrypt = require('bcrypt');
+  const isPasswordValid = await bcrypt.compare(password, comment.password_hash);
+  if (!isPasswordValid) throw new Error('비밀번호가 일치하지 않습니다.');
+
+  // 내용 수정
+  comment.content = newContent;
+  await comment.save();
+
+  return comment;
+};
+
 module.exports = {
   addComment,
+  updateComment,
 };
