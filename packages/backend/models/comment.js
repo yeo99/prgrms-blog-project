@@ -12,43 +12,38 @@ module.exports = (sequelize, DataTypes) => {
       // 댓글은 하나의 포스트에 속함
       Comment.belongsTo(models.Post, {
         foreignKey: 'post_id',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       });
     }
   }
 
   // 필드 정의
-  Comment.init({
-    post_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
+  Comment.init(
+    {
+      post_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      author_id: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
+      password_hash: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    author_id: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    password_hash: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    {
+      sequelize,
+      modelName: 'Comment',
+      tableName: 'comments', // 테이블 이름 명시
+      timestamps: true,
     }
-  }, {
-    sequelize,
-    modelName: 'Comment',
-    tableName: 'comments',  // 테이블 이름 명시
-    timestamps: false,      // createdAt, updatedAt 필드 자동 생성 비활성화
-  });
+  );
 
   return Comment;
 };

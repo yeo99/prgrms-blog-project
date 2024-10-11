@@ -7,37 +7,33 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       post_id: {
-        type: Sequelize.BIGINT
+        type: Sequelize.BIGINT,
       },
       content: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       author_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       password_hash: {
-        type: Sequelize.STRING
-      },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Comments');
-  }
+  },
 };
