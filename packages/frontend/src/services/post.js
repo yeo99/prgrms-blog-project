@@ -1,4 +1,4 @@
-import { axiosInstance } from '../src/lib/axiosInstance';
+import { axiosInstance } from '../lib/axiosInstance';
 
 // 전체 게시글 가져오기
 export const getPosts = async () => {

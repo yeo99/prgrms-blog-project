@@ -1,4 +1,4 @@
-import { axiosInstance } from '../src/lib/axiosInstance';
+import { axiosInstance } from '../lib/axiosInstance';
 
 // 댓글 작성
 export const addComment = async (postId, content, author_id, password) => {

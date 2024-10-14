@@ -1,7 +1,12 @@
 // /packages/backend/config/config.js
 const path = require('path');
 require('dotenv').config({
-  path: path.resolve(__dirname, process.env.NODE_ENV === 'production' ? '../../../.env.production' : '../../../.env.local')
+  path: path.resolve(
+    __dirname,
+    process.env.NODE_ENV === 'production'
+      ? '../../../.env.production'
+      : '../../../.env.local'
+  ),
 });
 
 module.exports = {
@@ -18,5 +23,5 @@ module.exports = {
     database: process.env.PROD_DB_NAME,
     host: process.env.PROD_DB_HOST,
     dialect: process.env.PROD_DB_DIALECT,
-  }
+  },
 };
